@@ -1,0 +1,164 @@
+[project]
+name = "soda-snowflake-validator"
+version = "1.0.0"
+description = "FastAPI application for data quality validation using SODA Core and Snowflake"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+keywords = ["data-quality", "soda-core", "snowflake", "fastapi", "validation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    # FastAPI and server dependencies
+    "fastapi>=0.104.1",
+    "uvicorn[standard]>=0.24.0",
+
+    # SODA Core with Snowflake support
+    "soda-core-snowflake>=3.3.0",
+
+    # Additional SODA dependencies that might be needed
+    "pyyaml>=6.0.1",
+    "cryptography>=41.0.7",
+
+    # Snowflake connector
+    "snowflake-connector-python>=3.4.0",
+
+    # Data processing and validation
+    "pydantic>=2.4.0",
+
+    # Async and concurrency
+    "asyncio>=3.4.3",
+
+    # Logging and utilities
+    "python-multipart>=0.0.6",  # For form data handling
+]
+
+[project.optional-dependencies]
+dev = [
+    # Development and testing
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.1",
+    "httpx>=0.25.0",
+    "pytest-cov>=4.1.0",
+
+    # Code formatting and linting
+    "black>=23.9.0",
+    "isort>=5.12.0",
+    "flake8>=6.1.0",
+    "mypy>=1.6.0",
+
+    # Development server
+    "watchdog>=3.0.0",
+]
+
+production = [
+    # Production monitoring and deployment
+    "gunicorn>=21.2.0",
+    "prometheus-client>=0.18.0",
+]
+
+[project.scripts]
+soda-validator = "main:app"
+
+[project.urls]
+Homepage = "https://github.com/yourusername/soda-snowflake-validator"
+Documentation = "https://github.com/yourusername/soda-snowflake-validator#readme"
+Repository = "https://github.com/yourusername/soda-snowflake-validator.git"
+Issues = "https://github.com/yourusername/soda-snowflake-validator/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--cov=main",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["."]
+omit = [
+    "*/tests/*",
+    "*/venv/*",
+    "*/.venv/*",
+    "*/site-packages/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

@@ -1,0 +1,35 @@
+# SODA Core Snowflake FastAPI Validator Dependencies
+# Python 3.11+ required
+#
+# Install with: pip install -r requirements.txt
+#
+# For development: pip install -r requirements.txt -r requirements-dev.txt
+
+# FastAPI and server dependencies
+fastapi>=0.104.1
+uvicorn[standard]>=0.24.0
+
+# SODA Core with Snowflake support
+soda-core-snowflake>=3.3.0
+
+# Core dependencies for SODA Core
+PyYAML>=6.0.1
+cryptography>=41.0.7
+
+# Snowflake connector
+snowflake-connector-python>=3.4.0
+
+# Data validation and serialization
+pydantic>=2.4.0
+
+# HTTP client for internal requests
+httpx>=0.25.0
+
+# Form data handling
+python-multipart>=0.0.6
+
+# JSON handling and utilities
+orjson>=3.9.0
+
+# Logging structured data
+structlog>=23.1.0

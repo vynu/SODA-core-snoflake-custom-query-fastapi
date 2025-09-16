@@ -1,0 +1,35 @@
+# Development and testing dependencies
+# Install with: pip install -r requirements-dev.txt
+
+# Testing framework
+pytest>=7.4.0
+pytest-asyncio>=0.21.1
+pytest-cov>=4.1.0
+pytest-mock>=3.11.0
+
+# HTTP testing
+httpx>=0.25.0
+
+# Code formatting and linting
+black>=23.9.0
+isort>=5.12.0
+flake8>=6.1.0
+mypy>=1.6.0
+
+# Pre-commit hooks
+pre-commit>=3.4.0
+
+# Development server with auto-reload
+watchdog>=3.0.0
+
+# Documentation generation
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
+
+# Jupyter for data analysis (optional)
+jupyter>=1.0.0
+ipykernel>=6.25.0
+
+# Performance profiling (optional)
+py-spy>=0.3.14
+memory-profiler>=0.61.0
